@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="auto-preview-latexmarkdown-on-save-with-vs-code">Auto preview latex/markdown on save with VS Code</h1>
+<p>test</p>
+<p><span class="math display">\[
+\exp(i\theta)+1=0
+\]</span></p>
+<p>very similar to <a href="http://thisdavej.com/build-an-amazing-markdown-editor-using-visual-studio-code-and-pandoc/">this walk through</a></p>
+<h2 id="configure-build-task">configure build task</h2>
+<ul>
+<li>configure build with <code>tasks.json</code>:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+  <span class="er">//</span> <span class="er">See</span> <span class="er">https</span><span class="fu">:</span><span class="er">//go.microsoft.com/fwlink/?LinkId=</span><span class="dv">733558</span>
+  <span class="er">//</span> <span class="er">for</span> <span class="er">the</span> <span class="er">documentation</span> <span class="er">about</span> <span class="er">the</span> <span class="er">tasks.json</span> <span class="er">format</span>
+  <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;2.0.0&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;tasks&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="fu">{</span>
+      <span class="dt">&quot;taskName&quot;</span><span class="fu">:</span> <span class="st">&quot;echo&quot;</span><span class="fu">,</span>
+      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;make&quot;</span><span class="fu">,</span>
+      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;process&quot;</span><span class="fu">,</span>
+      <span class="dt">&quot;presentation&quot;</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">&quot;echo&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span>
+        <span class="dt">&quot;reveal&quot;</span><span class="fu">:</span> <span class="st">&quot;silent&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;focus&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span>
+        <span class="dt">&quot;panel&quot;</span><span class="fu">:</span> <span class="st">&quot;shared&quot;</span>
+      <span class="fu">},</span>
+      <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">&quot;kind&quot;</span><span class="fu">:</span> <span class="st">&quot;build&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;isDefault&quot;</span><span class="fu">:</span> <span class="kw">true</span>
+      <span class="fu">}</span>
+    <span class="fu">}</span>
+  <span class="ot">]</span>
+<span class="fu">}</span></code></pre></div>
+<h2 id="pandoc-via-make">pandoc via make</h2>
+<ul>
+<li>use <code>pandoc</code> with this <a href="http://benjam.info/panam/"><code>css</code> style sheet</a></li>
+<li>use simple <code>Makefile</code> to call <code>pandoc</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span class="dv">readme.html:</span><span class="dt">readme.md</span>
+  pandoc <span class="ch">\</span>
+  --css=css/style.css -V lang=en -V highlighting-css= <span class="ch">\</span>
+  --mathjax <span class="ch">\</span>
+  --smart <span class="ch">\</span>
+  --to=html5 readme.md -o readme.html</code></pre></div>
+<h2 id="auto-refresh-preview-on-build">auto refresh preview on build</h2>
+<ul>
+<li>use <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server extension</a> to get a single HTML preview in browser (no duplicates)</li>
+</ul>
+<h2 id="auto-build-on-save">auto build on save</h2>
+<ul>
+<li>execute <code>tasks.json</code> on each save by adding this to <code>keybindings.json</code> in workspace</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="ot">[</span>
+  <span class="fu">{</span>
+    <span class="dt">&quot;key&quot;</span><span class="fu">:</span> <span class="st">&quot;cmd+s&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;workbench.action.tasks.build&quot;</span>
+  <span class="fu">}</span>
+<span class="ot">]</span></code></pre></div>
+</body>
+</html>
