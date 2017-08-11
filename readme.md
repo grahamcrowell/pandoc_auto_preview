@@ -57,6 +57,8 @@ readme.html:readme.md
 
 ## auto build on save
 
+*doesn't work*
+
 - execute `tasks.json` on each save by adding this to `keybindings.json` in workspace
 
 ``` {.json}
@@ -67,3 +69,4 @@ readme.html:readme.md
   }
 ]
 ```
+

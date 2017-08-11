@@ -1,7 +1,7 @@
 
-readme.html:readme.md
+index.html:readme.md target.md
 	pandoc \
-	--css=css/style.css -V lang=en -V highlighting-css= \
-	--mathjax \
 	--smart \
-	--to=html5 readme.md -o readme.html
+	--table-of-contents \
+	--css=http://b.enjam.info/panam/styling.css -V lang=en -V highlighting-css= \
+	--to=html5 readme.md target.md -o index.html

@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "editor.insertSpaces": true,
-    "editor.quickSuggestions": false,
-    "pandoc.htmlOptString": "--css=css/style.css -V lang=en -V highlighting-css= --mathjax --smart --to=html5"
+    "editor.quickSuggestions": false
+    // "pandoc.htmlOptString": "--css=css/style.css -V lang=en -V highlighting-css= --mathjax --smart --to=html5"
 }

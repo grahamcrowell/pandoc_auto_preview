@@ -6,18 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <link rel="stylesheet" href="http://b.enjam.info/panam/styling.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
+<nav id="TOC">
+<ul>
+<li><a href="#auto-preview-latexmarkdown-on-save-with-vs-code">Auto preview latex/markdown on save with VS Code</a><ul>
+<li><a href="#configure-build-task">configure build task</a></li>
+<li><a href="#pandoc-via-make">pandoc via make</a></li>
+<li><a href="#auto-refresh-preview-on-build">auto refresh preview on build</a></li>
+<li><a href="#auto-build-on-save">auto build on save</a></li>
+</ul></li>
+</ul>
+</nav>
 <h1 id="auto-preview-latexmarkdown-on-save-with-vs-code">Auto preview latex/markdown on save with VS Code</h1>
 <p>test</p>
-<p><span class="math display">\[
-\exp(i\theta)+1=0
-\]</span></p>
+<p><br /><span class="math display">exp(<em>i</em><em>θ</em>)+1 = 0</span><br /></p>
 <p>very similar to <a href="http://thisdavej.com/build-an-amazing-markdown-editor-using-visual-studio-code-and-pandoc/">this walk through</a></p>
 <h2 id="configure-build-task">configure build task</h2>
 <ul>
@@ -61,6 +68,7 @@
 <li>use <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server extension</a> to get a single HTML preview in browser (no duplicates)</li>
 </ul>
 <h2 id="auto-build-on-save">auto build on save</h2>
+<p><em>doesn’t work</em></p>
 <ul>
 <li>execute <code>tasks.json</code> on each save by adding this to <code>keybindings.json</code> in workspace</li>
 </ul>
@@ -70,5 +78,6 @@
     <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;workbench.action.tasks.build&quot;</span>
   <span class="fu">}</span>
 <span class="ot">]</span></code></pre></div>
+<p>oh hi there.</p>
 </body>
 </html>
