@@ -1,68 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="http://b.enjam.info/panam/styling.css">
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-<nav id="TOC">
-<ul>
-<li><a href="#auto-preview-latexmarkdown-on-save-with-vs-code">Auto preview latex/markdown on save with VS Code</a><ul>
-<li><a href="#configure-build-task">configure build task</a></li>
-<li><a href="#pandoc-via-make">pandoc via make</a></li>
-<li><a href="#auto-refresh-preview-on-build">auto refresh preview on build</a></li>
-<li><a href="#auto-build-on-save">auto build on save</a></li>
-</ul></li>
-</ul>
-</nav>
 <h1 id="auto-preview-latexmarkdown-on-save-with-vs-code">Auto preview latex/markdown on save with VS Code</h1>
 <p>test</p>
-<p><br /><span class="math display">exp(<em>i</em><em>θ</em>)+1 = 0</span><br /></p>
+<p><br /><span class="math display">exp (<em>i</em><em>θ</em>) + 1 = 0</span><br /></p>
 <p>very similar to <a href="http://thisdavej.com/build-an-amazing-markdown-editor-using-visual-studio-code-and-pandoc/">this walk through</a></p>
 <h2 id="configure-build-task">configure build task</h2>
 <ul>
 <li>configure build with <code>tasks.json</code>:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
-  <span class="er">//</span> <span class="er">See</span> <span class="er">https</span><span class="fu">:</span><span class="er">//go.microsoft.com/fwlink/?LinkId=</span><span class="dv">733558</span>
-  <span class="er">//</span> <span class="er">for</span> <span class="er">the</span> <span class="er">documentation</span> <span class="er">about</span> <span class="er">the</span> <span class="er">tasks.json</span> <span class="er">format</span>
-  <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;2.0.0&quot;</span><span class="fu">,</span>
-  <span class="dt">&quot;tasks&quot;</span><span class="fu">:</span> <span class="ot">[</span>
-    <span class="fu">{</span>
-      <span class="dt">&quot;taskName&quot;</span><span class="fu">:</span> <span class="st">&quot;echo&quot;</span><span class="fu">,</span>
-      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;make&quot;</span><span class="fu">,</span>
-      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;process&quot;</span><span class="fu">,</span>
-      <span class="dt">&quot;presentation&quot;</span><span class="fu">:</span> <span class="fu">{</span>
-        <span class="dt">&quot;echo&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span>
-        <span class="dt">&quot;reveal&quot;</span><span class="fu">:</span> <span class="st">&quot;silent&quot;</span><span class="fu">,</span>
-        <span class="dt">&quot;focus&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span>
-        <span class="dt">&quot;panel&quot;</span><span class="fu">:</span> <span class="st">&quot;shared&quot;</span>
-      <span class="fu">},</span>
-      <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="fu">{</span>
-        <span class="dt">&quot;kind&quot;</span><span class="fu">:</span> <span class="st">&quot;build&quot;</span><span class="fu">,</span>
-        <span class="dt">&quot;isDefault&quot;</span><span class="fu">:</span> <span class="kw">true</span>
-      <span class="fu">}</span>
-    <span class="fu">}</span>
-  <span class="ot">]</span>
-<span class="fu">}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="er">//</span> <span class="er">See</span> <span class="er">https</span><span class="fu">:</span><span class="er">//go.microsoft.com/fwlink/?LinkId=</span><span class="dv">733558</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="er">//</span> <span class="er">for</span> <span class="er">the</span> <span class="er">documentation</span> <span class="er">about</span> <span class="er">the</span> <span class="er">tasks.json</span> <span class="er">format</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;2.0.0&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">&quot;tasks&quot;</span><span class="fu">:</span> <span class="ot">[</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">      <span class="dt">&quot;taskName&quot;</span><span class="fu">:</span> <span class="st">&quot;echo&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;make&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;process&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">      <span class="dt">&quot;presentation&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">        <span class="dt">&quot;echo&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">        <span class="dt">&quot;reveal&quot;</span><span class="fu">:</span> <span class="st">&quot;silent&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">        <span class="dt">&quot;focus&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">        <span class="dt">&quot;panel&quot;</span><span class="fu">:</span> <span class="st">&quot;shared&quot;</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">      <span class="fu">},</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">      <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">        <span class="dt">&quot;kind&quot;</span><span class="fu">:</span> <span class="st">&quot;build&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">        <span class="dt">&quot;isDefault&quot;</span><span class="fu">:</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">      <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">  <span class="ot">]</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="fu">}</span></a></code></pre></div>
 <h2 id="pandoc-via-make">pandoc via make</h2>
 <ul>
 <li>use <code>pandoc</code> with this <a href="http://benjam.info/panam/"><code>css</code> style sheet</a></li>
 <li>use simple <code>Makefile</code> to call <code>pandoc</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span class="dv">readme.html:</span><span class="dt">readme.md</span>
-  pandoc <span class="ch">\</span>
-  --css=css/style.css -V lang=en -V highlighting-css= <span class="ch">\</span>
-  --mathjax <span class="ch">\</span>
-  --smart <span class="ch">\</span>
-  --to=html5 readme.md -o readme.html</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode makefile"><code class="sourceCode makefile"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dv">readme.html:</span><span class="dt">readme.md</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  pandoc <span class="ch">\</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  --css=css/style.css -V lang=en -V highlighting-css= <span class="ch">\</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  --mathjax <span class="ch">\</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  --smart <span class="ch">\</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  --to=html5 readme.md -o readme.html</a></code></pre></div>
 <h2 id="auto-refresh-preview-on-build">auto refresh preview on build</h2>
 <ul>
 <li>use <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server extension</a> to get a single HTML preview in browser (no duplicates)</li>
@@ -72,12 +48,11 @@
 <ul>
 <li>execute <code>tasks.json</code> on each save by adding this to <code>keybindings.json</code> in workspace</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="ot">[</span>
-  <span class="fu">{</span>
-    <span class="dt">&quot;key&quot;</span><span class="fu">:</span> <span class="st">&quot;cmd+s&quot;</span><span class="fu">,</span>
-    <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;workbench.action.tasks.build&quot;</span>
-  <span class="fu">}</span>
-<span class="ot">]</span></code></pre></div>
-<p>oh hi there.</p>
-</body>
-</html>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ot">[</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="fu">{</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="dt">&quot;key&quot;</span><span class="fu">:</span> <span class="st">&quot;cmd+s&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;workbench.action.tasks.build&quot;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="fu">}</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="ot">]</span></a></code></pre></div>
+<h1 id="ur-arrived-at-target">ur arrived at target</h1>
+<p>blah bah</p>
